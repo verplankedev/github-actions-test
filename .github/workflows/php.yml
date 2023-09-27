@@ -49,8 +49,9 @@ jobs:
       - name: Store artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: coverage
+          name: coverage-${{ github.ref_name }}
           path: docs/coverage
+          retention-days: 30
 #
 #      - name: Installed & Loaded PHP Extensions
 #        run: php -v && php -m
