@@ -1,0 +1,19 @@
+name: Test PHP Extensions
+
+on:
+  push:
+
+jobs:
+  extensions:
+    runs-on: ubuntu-22.04
+    name: PHP Extensions
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+
+      - name: Installed & Loaded PHP Extensions
+        run: php -v && php -m
