@@ -1,7 +1,10 @@
 name: Test PHP Extensions
 
 on:
-  push:
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
   extensions:
@@ -16,8 +19,6 @@ jobs:
         ports:
           - 33306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-    continue-on-error: true
 
     name: PHP Extensions
 
