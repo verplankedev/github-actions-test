@@ -17,3 +17,9 @@ jobs:
 
       - name: Installed & Loaded PHP Extensions
         run: php -v && php -m
+
+      - name: test ext-redis
+        run: php -r "var_dump(class_exists(Redis::class));"
+
+      - name: test ext-imagick
+        run: php -r "var_dump(class_exists(Imagick::class));"
