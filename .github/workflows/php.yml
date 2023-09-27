@@ -14,12 +14,27 @@ jobs:
         with:
           php-version: '8.2'
           tools: composer:v2
+          coverage: pcov
 
-      - name: Installed & Loaded PHP Extensions
-        run: php -v && php -m
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: test ext-redis
-        run: php -r "var_dump(class_exists(Redis::class));"
+      - name: Run Pest
+        run: php artisan test --parallel --coverage-html docs/coverage
 
-      - name: test ext-imagick
-        run: php -r "var_dump(class_exists(Imagick::class));"
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: docs/coverage
+#
+#      - name: Installed & Loaded PHP Extensions
+#        run: php -v && php -m
+#
+#      - name: test ext-redis
+#        run: php -r "var_dump(class_exists(Redis::class));"
+#
+#      - name: test ext-imagick
+#        run: php -r "var_dump(class_exists(Imagick::class));"
+#
+#
