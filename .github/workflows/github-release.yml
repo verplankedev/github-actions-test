@@ -24,7 +24,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm i -D semantic-release
+        run: npm i -D semantic-release conventional-changelog-conventionalcommits
 
       - name: Create Release
         env:
