@@ -5,4 +5,5 @@ test('that true is true', function () {
     expect(false)->toBeFalse();
     expect(null)->toBeNull();
     expect('string')->toBeString();
+    expect(1)->toBeInt();
 });
