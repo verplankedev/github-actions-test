@@ -25,7 +25,7 @@
           {"type": "chore", "section": "Chores"}
         ],
         "writerOpts":{
-          "headerPartial": "./.github/release/templates/header.hbs"
+          "headerPartial": "## {{#if @root.linkCompare~}}\n  [v{{version}}](\n  {{~#if @root.repository~}}\n    {{~#if @root.host}}\n      {{~@root.host}}/\n    {{~/if}}\n    {{~#if @root.owner}}\n      {{~@root.owner}}/\n    {{~/if}}\n    {{~@root.repository}}\n  {{~else}}\n    {{~@root.repoUrl}}\n  {{~/if~}}\n  /compare/{{previousTag}}...{{currentTag}})\n{{~else}}\n  v{{~version}}\n{{~/if}}\n{{~#if title}} \"{{title}}\"\n{{~/if}}\n{{~#if date}} ({{date}})\n{{/if}}"
         }
       }
     ],

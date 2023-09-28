@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  extensions:
+  code_coverage:
     runs-on: ubuntu-22.04
 
     services:
@@ -17,7 +17,7 @@ jobs:
           - 33306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
-    name: PHP Extensions
+    name: Code Coverage
 
     steps:
       - name: Setup PHP
@@ -41,7 +41,7 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate
 
-      - name: Run Pest
+      - name: Generate Code Coverage
         run: php artisan test --parallel --coverage-html docs/coverage
 
       - name: Store artifacts
@@ -49,4 +49,4 @@ jobs:
         with:
           name: coverage-${{ github.ref_name }}
           path: docs/coverage
-          retention-days: 30
+          retention-days: 7
