@@ -1,11 +1,11 @@
 name: Sentry Release
 
-#on:
-#  release:
-#    types: [published]
-
 on:
-  workflow_dispatch:
+  release:
+    types: [published]
+
+#on:
+#  workflow_dispatch:
 
 
 jobs:
