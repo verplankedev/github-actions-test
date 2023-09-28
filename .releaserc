@@ -25,7 +25,7 @@
           {"type": "chore", "section": "Chores"}
         ],
         "writerOpts":{
-          "headerPartial": ".github/release/templates/header.hbs"
+          "headerPartial": "./.github/release/templates/header.hbs"
         }
       }
     ],
