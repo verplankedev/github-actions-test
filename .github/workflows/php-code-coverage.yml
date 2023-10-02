@@ -40,7 +40,7 @@ jobs:
 
       - name: Generate Application Key
         run: |
-          echo "APP_ENV=" > .env
+          echo "APP_KEY=" > .env
           php artisan key:generate
 
       - name: Generate Code Coverage
