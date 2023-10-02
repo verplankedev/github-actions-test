@@ -1,4 +1,4 @@
-name: PHPUnit Code Coverage
+name: PHP Code Coverage
 
 on:
   workflow_dispatch:
@@ -39,7 +39,9 @@ jobs:
 #        run: cp .env.ci .env
 
       - name: Generate Application Key
-        run: php artisan key:generate
+        run: |
+          touch .env
+          php artisan key:generate
 
       - name: Generate Code Coverage
         run: php artisan test --parallel --coverage-html coverage
