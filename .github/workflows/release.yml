@@ -10,13 +10,13 @@ on:
 #        description: "The version to release. The version should be the same as version in package.json. For example, 1.0.0"
 #        required: true
 
+if: startsWith(github.ref_name, 'v')
 jobs:
   release:
     runs-on: ubuntu-22.04
 
     name: Release ${{ github.ref_name }}
 
-    if: startsWith(github.ref_name, 'v')
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
