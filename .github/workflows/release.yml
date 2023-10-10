@@ -16,6 +16,7 @@ jobs:
 
     name: Release
 
+#    if: contains(github.ref, "v")
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -25,6 +26,13 @@ jobs:
 
       - name: Output checked out ref (tag)
         run: echo '${{ github.ref }}'
+
+      - uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "github-actions-test"
+          heroku_email: "job@noprotocol.nl"
+          branch: ${{ github.ref }}
 
 
 #      - name: Checkout Repo
