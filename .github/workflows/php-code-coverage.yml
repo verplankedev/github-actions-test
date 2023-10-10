@@ -35,9 +35,6 @@ jobs:
         with:
           composer-options: "--no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
 
-#      - name: Copy Environment File
-#        run: cp .env.ci .env
-
       - name: Generate Application Key
         run: |
           echo "APP_KEY=" > .env

@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "The app to release. The name should be the same as name in package.json"
+        required: true
+      version:
+        description: "The version to release. The version should be the same as version in package.json. For example, 1.0.0"
+        required: true
+
+jobs:
+  release:
+    name: Deploy
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          ref: ref/tags/${{ inputs.version }}
+
+      - uses: actions/github-script@v6
+        id: get-release
+        with:
+          # result-encoding: string
+          retries: 3
+          script: |
+            if (${{ startsWith(github.event.inputs.ref, 'v') }}) {
+              return github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: "${{ github.event.inputs.ref }}"
+              })
+            } else {
+              return github.rest.repos.getLatestRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              })
+            }
+
+      - name: Output Github Release
+        if: steps.get-release.outputs.result != ''
+        run: echo '${{ steps.get-release.outputs.result }}' | jq -r '.data.tag_name'
