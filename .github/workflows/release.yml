@@ -16,7 +16,7 @@ jobs:
 
     name: Release ${{ github.ref_name }}
 
-    if: startsWith(github.ref_name, "v")
+    if: startsWith(github.ref_name, 'v')
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
