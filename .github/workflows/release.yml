@@ -12,7 +12,9 @@ on:
 
 jobs:
   release:
-    name: Deploy
+    runs-on: ubuntu-22.04
+
+    name: Release
 
     steps:
       - name: Checkout Code
