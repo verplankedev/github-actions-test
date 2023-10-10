@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ref/tags/${{ github.ref }}
+          ref: ${{ github.ref }}
 
       - name: Output checked out ref (tag)
         run: echo '${{ github.ref }}'
