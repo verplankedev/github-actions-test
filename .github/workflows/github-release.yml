@@ -1,4 +1,4 @@
-name: Github Release
+name: Release
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
   github_release:
     runs-on: ubuntu-22.04
 
-    name: Github Release
+    name: Release
 
     steps:
       - name: Checkout Code
