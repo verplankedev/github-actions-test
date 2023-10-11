@@ -5,11 +5,11 @@ on:
 
 jobs:
   deploy_to_heroku:
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+#    if: ${{ startsWith(github.ref, 'refs/tags/') }}
 
     runs-on: ubuntu-22.04
 
-    name: Deploy ${{ github.ref_name }} to
+    name: Deploy ${{ github.ref_name }} to ${{ secrets.HEROKU_APP_NAME }}
 
     steps:
 #      - name: Checkout Code
