@@ -18,9 +18,13 @@ jobs:
 #          fetch-depth: 0
 #          ref: ${{ github.ref }}
 
+      - name: View the github context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+
       - name: Output workflow_dispatch
-        run: | 
-          ${{ github.event.workflow_dispatch.sender }}
+        run: echo "${{ github.event.workflow_dispatch.sender }}"
 
 #      - uses: akhileshns/heroku-deploy@v3.12.14
 #        with:
