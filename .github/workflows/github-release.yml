@@ -8,3 +8,6 @@ on:
 jobs:
   github_release:
     uses: verplankedev/.github/.github/workflows/github-release.yml@main
+    env:
+      GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+
