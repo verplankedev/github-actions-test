@@ -9,7 +9,7 @@ jobs:
 
     runs-on: ubuntu-22.04
 
-    name: Deploy ${{ github.ref_name }} to ${{ secrets.HEROKU_APP_NAME }}
+    name: Deploy ${{ github.ref_name }}
 
     steps:
 #      - name: Checkout Code
