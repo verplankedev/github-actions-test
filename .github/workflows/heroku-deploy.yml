@@ -19,7 +19,9 @@ jobs:
 #          ref: ${{ github.ref }}
 
       - name: Output workflow_dispatch
-        run: ${{ github.event.workflow_dispatch.sender }}
+        run: | 
+          ${{ github.event }}
+          ${{ github.event.workflow_dispatch }}
 
 #      - uses: akhileshns/heroku-deploy@v3.12.14
 #        with:
