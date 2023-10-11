@@ -7,26 +7,4 @@ on:
 
 jobs:
   github_release:
-    runs-on: ubuntu-22.04
-
-    name: Release
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm i -D semantic-release conventional-changelog-conventionalcommits
-
-      - name: Create Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        run: npx semantic-release
+    uses: verplankedev/.github/.github/workflows/github-release.yml
