@@ -24,7 +24,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
 
       - name: Output workflow_dispatch
-        run: echo "${{ github.event.workflow_dispatch.sender }}"
+        run: echo "${{ github.event.sender }}"
 
 #      - uses: akhileshns/heroku-deploy@v3.12.14
 #        with:
