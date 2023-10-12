@@ -8,5 +8,4 @@ on:
 jobs:
   github_release:
     uses: verplankedev/.github/.github/workflows/github-release.yml@main
-    secrets:
-      secrets: inherit
+    secrets: inherit
