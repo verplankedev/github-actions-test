@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy_to_heroku:
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') }} # guard, only tags are allowed to be deployed
 
     name: Deploy ${{ github.ref_name }}
 
