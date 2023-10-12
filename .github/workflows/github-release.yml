@@ -9,4 +9,4 @@ jobs:
   github_release:
     uses: verplankedev/.github/.github/workflows/github-release.yml@main
     secrets:
-      RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      secrets: inherit
