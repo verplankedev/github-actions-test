@@ -1,58 +1,50 @@
-name: PHP Code Coverage
+name: Generate PHP Code Coverage Report
 
 on:
   workflow_dispatch:
+    inputs:
+      php:
+        required: true
+        default: '8.1'
+        description: 'Generate code coverage report using selected PHP version'
+        type: choice
+        options:
+          - '8.0'
+          - '8.1'
+          - '8.2'
+          - '8.3'
 
 jobs:
-  code_coverage:
-    runs-on: ubuntu-22.04
-
-    services:
-      mysql:
-        image: mysql:8
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: test
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
-    name: Code Coverage
+  credentials:
+    runs-on: ubuntu-latest
+    outputs:
+      CREDENTIAL1: ${{ steps.credentials.outputs.CREDENTIAL1 }}
+      CREDENTIAL2: ${{ steps.credentials.outputs.CREDENTIAL2 }}
 
     steps:
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          tools: composer:v2
-          coverage: pcov
-
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install & Cache Composer Dependencies
-        uses: ramsey/composer-install@v2
-        with:
-          composer-options: "--no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
-
-      - name: Generate Application Key
-        run: |
-          echo "APP_KEY=" > .env
-          php artisan key:generate
-
-      - name: Generate Code Coverage
-        run: php artisan test --parallel --coverage-html coverage
+      - name: Output encoded credentials
+        id: credentials
         env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
-          DB_USERNAME: root
-          AWS_ACCESS_KEY_ID: randomKey
-          AWS_SECRET_ACCESS_KEY: randomSecret
+          CREDENTIAL1: ${{ secrets.CREDENTIAL1 }}
+          CREDENTIAL2: ${{ secrets.CREDENTIAL2 }}
+        run: |
+          echo "CREDENTIAL1=$(echo $CREDENTIAL1 | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
+          echo "CREDENTIAL2=$(echo $CREDENTIAL2 | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
 
-      - name: Store artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-${{ github.ref_name }}
-          path: |
-            coverage
-            storage/logs
-          retention-days: 1
+  code_coverage:
+    needs: credentials
+
+    name: Generate Code Coverage
+    uses: verplankedev/.github/.github/workflows/php-code-coverage.yml@main
+    secrets:
+      env_vars: |
+        CREDENTIAL1=${{ needs.credentials.outputs.CREDENTIAL1 }}
+        CREDENTIAL2=${{ needs.credentials.outputs.CREDENTIAL2 }}
+        FOO=BAR
+        APP_ENV=testing
+#
+#    with:
+#      DB_PORT: ${{ job.services.mysql.ports[3306] }}
+#      DB_USERNAME: root
+#      AWS_ACCESS_KEY_ID: randomKey
+#      AWS_SECRET_ACCESS_KEY: randomSecret
