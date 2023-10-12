@@ -16,31 +16,18 @@ on:
 
 jobs:
 #  credentials:
-#    runs-on: ubuntu-latest
-#    outputs:
-#      FOO: ${{ steps.credentials.outputs.FOO }}
-#      APP_ENV: ${{ steps.credentials.outputs.APP_ENV }}
+#    runs-on: ubuntu-22.04
 #
 #    steps:
-#      - name: Output encoded credentials
-#        id: credentials
-#        env:
-#          FOO: ${{ secrets.FOO }}
-#          APP_ENV: ${{ secrets.APP_ENV }}
-#        run: |
-#          echo "FOO=$(echo FOO)" >> $GITHUB_OUTPUT
-#          echo "APP_ENV=$(echo APP_ENV)" >> $GITHUB_OUTPUT
+#      - name: import env vars from file
+#        id: env_vars
+#        run: cat ${{ env.ENV_FILE }} >> $GITHUB_ENV
 
   code_coverage:
-#    needs: credentials
-
-    name: Generate Code Coverage
     uses: verplankedev/.github/.github/workflows/php-code-coverage.yml@main
     secrets:
-      env_vars: |
-        APP_NAME="TestApp"
-        DB_USERNAME="root"
-#
+      env_file: ${{ secrets.ENV_FILE }}
+
 #    with:
 #      DB_PORT: ${{ job.services.mysql.ports[3306] }}
 #      DB_USERNAME: root
