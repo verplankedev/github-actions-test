@@ -1,5 +1,7 @@
 # Changelog
 
+## [Unreleased](https://github.com/verplankedev/github-actions-test/compare/v1.10.1...HEAD)
+
 ## v1.10.1 - 2023-10-12
 
 ### [v1.10.1](https://github.com/verplankedev/github-actions-test/compare/v1.10.0...v1.10.1) (2023-10-12)
