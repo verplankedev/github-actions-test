@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => 'Nothing to see here?!');
+Route::get('/', fn () => 'Nothing to see here');
