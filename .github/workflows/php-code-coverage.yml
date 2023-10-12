@@ -15,21 +15,7 @@ on:
           - '8.3'
 
 jobs:
-#  credentials:
-#    runs-on: ubuntu-22.04
-#
-#    steps:
-#      - name: import env vars from file
-#        id: env_vars
-#        run: cat ${{ env.ENV_FILE }} >> $GITHUB_ENV
-
   code_coverage:
     uses: verplankedev/.github/.github/workflows/php-code-coverage.yml@main
     secrets:
       env_file: ${{ secrets.ENV_FILE }}
-
-#    with:
-#      DB_PORT: ${{ job.services.mysql.ports[3306] }}
-#      DB_USERNAME: root
-#      AWS_ACCESS_KEY_ID: randomKey
-#      AWS_SECRET_ACCESS_KEY: randomSecret
