@@ -5,7 +5,7 @@ on:
     inputs:
       php:
         required: true
-        default: '8.1'
+        default: '8.2'
         description: 'Generate code coverage report using selected PHP version'
         type: choice
         options:
