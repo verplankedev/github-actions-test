@@ -15,32 +15,31 @@ on:
           - '8.3'
 
 jobs:
-  credentials:
-    runs-on: ubuntu-latest
-    outputs:
-      FOO: ${{ steps.credentials.outputs.FOO }}
-      APP_ENV: ${{ steps.credentials.outputs.APP_ENV }}
-
-    steps:
-      - name: Output encoded credentials
-        id: credentials
-        env:
-          FOO: ${{ secrets.FOO }}
-          APP_ENV: ${{ secrets.APP_ENV }}
-        run: |
-          echo "FOO=$(echo FOO)" >> $GITHUB_OUTPUT
-          echo "APP_ENV=$(echo APP_ENV)" >> $GITHUB_OUTPUT
+#  credentials:
+#    runs-on: ubuntu-latest
+#    outputs:
+#      FOO: ${{ steps.credentials.outputs.FOO }}
+#      APP_ENV: ${{ steps.credentials.outputs.APP_ENV }}
+#
+#    steps:
+#      - name: Output encoded credentials
+#        id: credentials
+#        env:
+#          FOO: ${{ secrets.FOO }}
+#          APP_ENV: ${{ secrets.APP_ENV }}
+#        run: |
+#          echo "FOO=$(echo FOO)" >> $GITHUB_OUTPUT
+#          echo "APP_ENV=$(echo APP_ENV)" >> $GITHUB_OUTPUT
 
   code_coverage:
-    needs: credentials
+#    needs: credentials
 
     name: Generate Code Coverage
     uses: verplankedev/.github/.github/workflows/php-code-coverage.yml@main
     secrets:
       env_vars: |
-        FOO=${{ needs.credentials.outputs.FOO }}
-        APP_ENV=${{ needs.credentials.outputs.APP_ENV }}
         APP_NAME="TestApp"
+        DB_USERNAME="root"
 #
 #    with:
 #      DB_PORT: ${{ job.services.mysql.ports[3306] }}
