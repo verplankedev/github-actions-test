@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  github_release:
+  release:
+    name: Release
     uses: verplankedev/.github/.github/workflows/github-release.yml@main
     secrets:
       RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
