@@ -18,18 +18,18 @@ jobs:
   credentials:
     runs-on: ubuntu-latest
     outputs:
-      CREDENTIAL1: ${{ steps.credentials.outputs.CREDENTIAL1 }}
-      CREDENTIAL2: ${{ steps.credentials.outputs.CREDENTIAL2 }}
+      FOO: ${{ steps.credentials.outputs.FOO }}
+      APP_ENV: ${{ steps.credentials.outputs.APP_ENV }}
 
     steps:
       - name: Output encoded credentials
         id: credentials
         env:
-          CREDENTIAL1: ${{ secrets.CREDENTIAL1 }}
-          CREDENTIAL2: ${{ secrets.CREDENTIAL2 }}
+          FOO: ${{ secrets.FOO }}
+          APP_ENV: ${{ secrets.APP_ENV }}
         run: |
-          echo "CREDENTIAL1=$(echo $CREDENTIAL1 | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
-          echo "CREDENTIAL2=$(echo $CREDENTIAL2 | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
+          echo "FOO=$(echo FOO)" >> $GITHUB_OUTPUT
+          echo "APP_ENV=$(echo APP_ENV)" >> $GITHUB_OUTPUT
 
   code_coverage:
     needs: credentials
@@ -38,10 +38,9 @@ jobs:
     uses: verplankedev/.github/.github/workflows/php-code-coverage.yml@main
     secrets:
       env_vars: |
-        CREDENTIAL1=${{ needs.credentials.outputs.CREDENTIAL1 }}
-        CREDENTIAL2=${{ needs.credentials.outputs.CREDENTIAL2 }}
-        FOO=BAR
-        APP_ENV=testing
+        FOO=${{ needs.credentials.outputs.FOO }}
+        APP_ENV=${{ needs.credentials.outputs.APP_ENV }}
+        APP_NAME="TestApp"
 #
 #    with:
 #      DB_PORT: ${{ job.services.mysql.ports[3306] }}
