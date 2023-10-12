@@ -1,6 +1,14 @@
 # Changelog
 
-## [Unreleased](https://github.com/verplankedev/github-actions-test/compare/v1.12.0...main)
+## [Unreleased](https://github.com/verplankedev/github-actions-test/compare/v1.13.0...main)
+
+## [v1.13.0](https://github.com/verplankedev/github-actions-test/compare/v1.12.0...v1.13.0) - 12-10-2023
+
+### [v1.13.0](https://github.com/verplankedev/github-actions-test/compare/v1.12.0...v1.13.0) (2023-10-12)
+
+#### Features
+
+- updated php code coverage workflow ([5f9474c](https://github.com/verplankedev/github-actions-test/commit/5f9474c4712fb1b734a61babe23fddb8d1a86534))
 
 ## [v1.12.0](https://github.com/verplankedev/github-actions-test/compare/v1.11.0...v1.12.0) - 12-10-2023
 
